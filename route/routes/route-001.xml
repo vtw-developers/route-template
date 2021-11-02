@@ -1,0 +1,8 @@
+<route>
+  <templateId>route-template-001</templateId>
+  <routeId>route-001</routeId>
+  <parameters>
+    <name>Mike</name>
+    <greeting>Hello</greeting>
+  </parameters>
+</route>

@@ -1,0 +1,12 @@
+dna:
+  agent:
+    route:
+      route-template-path: C:/Develop/route/route-templates
+      route-path: C:/Develop/route/routes
+camel:
+  springboot:
+    main-run-controller: true
+    routes-include-pattern: file:${dna.agent.route.route-template-path}/*.xml
+
+
+

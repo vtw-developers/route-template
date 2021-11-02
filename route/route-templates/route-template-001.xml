@@ -1,0 +1,12 @@
+<routeTemplates xmlns="http://camel.apache.org/schema/spring">
+    <routeTemplate id="route-template-001">
+        <templateParameter name="name"/>
+        <templateParameter name="greeting"/>
+        <templateParameter name="period" defaultValue="3s"/>
+        <route>
+            <from uri="timer:{{routeId}}?period={{period}}"/>
+            <setBody><simple>{{greeting}} {{name}}</simple></setBody>
+            <log message="${body}"/>
+        </route>
+    </routeTemplate>
+</routeTemplates>
