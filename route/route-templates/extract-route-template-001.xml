@@ -7,8 +7,7 @@
             <unmarshal><json/></unmarshal>
             <log message="${body}"/>
             <log message="${header.insertQuery}"/>
-            <to uri="sql:INSERT INTO {{tableName}}(row, operation, id, name, modified) values(nextval('target_seq'), :#operation, :#id, :#name, :#modified)"></to>
-<!--            <to uri="sql:${header.insertQuery}"></to>-->
+            <toD uri="sql:${header.insertQuery}"></toD>
             <log message="Success Insert Query at Target Table"/>
         </route>
     </routeTemplate>
