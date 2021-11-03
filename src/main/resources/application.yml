@@ -3,10 +3,30 @@ dna:
     route:
       route-template-path: C:/Develop/route/route-templates
       route-path: C:/Develop/route/routes
+
 camel:
   springboot:
     main-run-controller: true
     routes-include-pattern: file:${dna.agent.route.route-template-path}/*.xml
+  component:
+    kafka:
+      allow-manual-commit: false
+      auto-commit-enable: true
+      brokers: 34.64.70.138:9093
+      group-id: test-002-${USERDOMAIN_ROAMINGPROFILE}
+      break-on-first-error: false
 
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/portal
+    username: vtw
+    password: vtw123#
 
-
+## Logging
+#logging:
+#  level:
+#    root: info
+#    org.hibernate.type: info
+#    com.vtw: debug
+#    org.apache.kafka.clients.consumer.ConsumerConfig: warn

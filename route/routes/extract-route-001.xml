@@ -1,0 +1,8 @@
+<route>
+  <templateId>extract-route-template-001</templateId>
+  <routeId>extract-route-001</routeId>
+  <parameters>
+    <tableName>target</tableName>
+    <kafkaTopic>TOPIC-001</kafkaTopic>
+  </parameters>
+</route>

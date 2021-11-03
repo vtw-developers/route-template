@@ -1,0 +1,15 @@
+<routeTemplates xmlns="http://camel.apache.org/schema/spring">
+    <routeTemplate id="extract-route-template-001">
+        <templateParameter name="tableName"/>
+        <templateParameter name="kafkaTopic"/>
+        <route>
+            <from uri="kafka:{{kafkaTopic}}"/>
+            <unmarshal><json/></unmarshal>
+            <log message="${body}"/>
+            <log message="${header.insertQuery}"/>
+            <to uri="sql:INSERT INTO {{tableName}}(row, operation, id, name, modified) values(nextval('target_seq'), :#operation, :#id, :#name, :#modified)"></to>
+<!--            <to uri="sql:${header.insertQuery}"></to>-->
+            <log message="Success Insert Query at Target Table"/>
+        </route>
+    </routeTemplate>
+</routeTemplates>

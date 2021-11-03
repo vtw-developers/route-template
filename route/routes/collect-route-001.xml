@@ -1,0 +1,10 @@
+<route>
+  <templateId>collect-route-template-001</templateId>
+  <routeId>collect-route-001</routeId>
+  <parameters>
+    <tableName>source_log</tableName>
+    <selectQuery>SELECT * FROM source_log</selectQuery>
+    <insertQuery>INSERT INTO target(row, operation, id, name, modified) values(nextval('target_seq'), :#operation, :#id, :#name, :#modified) </insertQuery>
+    <kafkaTopic>TOPIC-001</kafkaTopic>
+  </parameters>
+</route>

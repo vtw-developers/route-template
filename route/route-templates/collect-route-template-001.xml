@@ -1,0 +1,25 @@
+<routeTemplates xmlns="http://camel.apache.org/schema/spring">
+    <routeTemplate id="collect-route-template-001">
+        <templateParameter name="tableName"/>
+        <templateParameter name="selectQuery"/>
+        <templateParameter name="insertQuery"/>
+        <templateParameter name="kafkaTopic"/>
+        <templateParameter name="period" defaultValue="10s"/>
+        <route>
+            <from uri="timer:{{routeId}}?period={{period}}"/>
+            <setHeader name="insertQuery">
+                <constant>{{insertQuery}}</constant>
+            </setHeader>
+            <to uri="sql:{{selectQuery}}"></to>
+            <log message="${body}"/>
+            <split>
+                <simple>${body}</simple>
+                <log message="${body}"/>
+                <marshal><json/></marshal>
+                <to uri="kafka:{{kafkaTopic}}"/>
+                <unmarshal><json/></unmarshal>
+                <to uri="sql:DELETE FROM {{tableName}} WHERE row=:#row"></to>
+            </split>
+        </route>
+    </routeTemplate>
+</routeTemplates>
